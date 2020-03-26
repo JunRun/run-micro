@@ -20,11 +20,11 @@ type OfferManager struct {
 var ol = offer.NewOfferService("", client.DefaultClient)
 
 func (o *OfferManager) SetOffer(ctx *gin.Context) {
-	var offer = &offer.OfferRequest{}
-	if err := ctx.Bind(offer); err != nil {
-		log.Error("设置offer 出错", err)
-	}
-	res, err := ol.SetOffer(context.TODO(), offer)
+	offerRequest := &offer.OfferRequest{}
+	offerRequest.PostBackUrl = ctx.PostForm("postBackUrl")
+	offerRequest.Name = ctx.PostForm("name")
+	log.Info("设置offer", offerRequest.PostBackUrl, offerRequest.Name)
+	res, err := ol.SetOffer(context.TODO(), offerRequest)
 	if err != nil {
 		ctx.JSON(400, err.Error())
 	} else {
