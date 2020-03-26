@@ -22,5 +22,9 @@ func ApiService() *gin.Engine {
 	postBackRouter := api.Group("/postBack")
 	postBackRouter.POST("/add", postBack.SetPostBack)
 
+	offer := new(handler.OfferManager)
+	offerRouter := api.Group("/offer")
+	offerRouter.POST("/set", offer.SetOffer)
+
 	return router
 }

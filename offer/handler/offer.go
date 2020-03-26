@@ -3,8 +3,6 @@ package handler
 import (
 	"context"
 	"errors"
-	"github.com/micro/go-micro/client"
-
 	log "github.com/micro/go-micro/v2/logger"
 
 	offer "offer/proto/offer"
@@ -36,8 +34,4 @@ func (e *Offer) GetOffer(ctx context.Context, request *offer.OfferRequest, respo
 		response.Msg = "获取成功"
 		return nil
 	}
-}
-
-func NewOfferService() offer.OfferService {
-	return offer.NewOfferService("go.micro.service.offer", client.DefaultClient)
 }
