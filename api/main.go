@@ -2,21 +2,21 @@ package main
 
 import (
 	"api/router"
-	log "github.com/micro/go-micro/v2/logger"
-	"github.com/micro/go-micro/web"
+	"github.com/micro/go-micro"
+	"github.com/micro/go-micro/v2/logger"
+	"github.com/micro/go-plugins/registry/etcdv3"
 )
 
 func main() {
 	// New Service
-	service := web.NewService(web.Name("go.micro.api.api"))
+	service := micro.NewService(micro.Name("go.micro.api.api"))
 
 	// Initialise service
-	service.Init()
+	service.Init(micro.Registry(etcdv3.NewRegistry()))
 	gin := router.ApiService()
-	service.Handle("/", gin)
-
 	// Run service
-	if err := service.Run(); err != nil {
-		log.Fatal(err)
+	if err := gin.Run(":8080"); err != nil {
+		logger.Error(err)
 	}
+
 }
