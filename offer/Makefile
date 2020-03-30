@@ -11,7 +11,7 @@ proto:
 .PHONY: build
 build: proto
 
-	go build -o offer-service *.go
+	GOOS=linux GOARCH=amd64 go build -o offer-service *.go
 
 .PHONY: test
 test:

@@ -1,0 +1,58 @@
+version: '3.1'
+
+services:
+  api-service:
+#    执行docker file 的目录
+    build: ./api/
+    ports:
+      - "8080:8080"
+    links:
+      - etcd
+    environment:
+      MICRO_ADRESS: ":8080"
+      MICRO_REGISTRY: etcd
+  offer-service:
+    build: ./offer/
+    links:
+      - etcd
+    environment:
+      MICRO_REGISTRY: etcd
+      DB_HOST: host.docker.internal
+
+
+#  database:
+#    image: postgres
+#    ports:
+#      - "5432:5432"
+#    environment:
+#      POSTGRES_PASSWORD: 123456
+#    volumes:
+#      - /Users/jun/docker/postgres
+
+  etcd:
+    image: quay.io/coreos/etcd:v3.3.12
+    ports:
+      - 12309:2379
+      - 12310:2380
+    environment:
+      ETCDCTL_API: 3
+    command:
+      - "/usr/local/bin/etcd"
+      - "--name"
+      - "s1"
+      - "--data-dir"
+      - "/etcd-data"
+      - "--advertise-client-urls"
+      - "http://0.0.0.0:2379"
+      - --listen-client-urls
+      - "http://0.0.0.0:2379"
+      - "--initial-advertise-peer-urls"
+      - "http://0.0.0.0:2380"
+      - "--listen-peer-urls"
+      - "http://0.0.0.0:2380"
+      - "--initial-cluster-token"
+      - "tkn"
+      - "--initial-cluster"
+      - "s1=http://0.0.0.0:2380"
+      - "--initial-cluster-state"
+      - "new"

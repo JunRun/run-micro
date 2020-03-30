@@ -26,11 +26,11 @@ func init() {
 		log.Error("读取配置文件出错: ", err)
 	}
 
-	host := config.Get("databases", "host").String("localhost")
-	user := config.Get("databases", "user").String("root")
+	host := config.Get("databases", "host").String("docker.for.mac.host.internal")
+	user := config.Get("databases", "user").String("postgres")
 	//port := config.Get("databases","port").String("5432")
-	password := config.Get("databases", "password").String("root")
-	dbname := config.Get("databases", "dbname").String("123")
+	password := config.Get("databases", "password").String("123456")
+	dbname := config.Get("databases", "dbname").String("micro")
 	conf := fmt.Sprintf("host=%s user=%s dbname=%s sslmode=disable password=%s", host, user, dbname, password)
 
 	single.Do(func() {
