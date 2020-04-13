@@ -1,0 +1,6 @@
+databases:
+  user: postgres
+  password: 123456
+  host: docker.for.mac.host.internal
+  port: 5432
+  dbname: micro

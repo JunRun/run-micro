@@ -10,9 +10,11 @@ go-micro 练手项目 订阅微服务
  
  待解决:
  
- 连接docker 容器的etcd
+# 连接docker 容器的etcd 
  
  读取配置文件失败
+ 
+ 使用etcd 读取配置文件
  
  
  
