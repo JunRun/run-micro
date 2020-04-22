@@ -7,8 +7,9 @@
 package handler
 
 import (
-	offer "api/proto/offer"
 	"context"
+
+	"github.com/JunRun/run-micro/offer"
 	"github.com/gin-gonic/gin"
 	"github.com/micro/go-micro/client"
 	log "github.com/micro/go-micro/v2/logger"
