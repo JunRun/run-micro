@@ -1,4 +1,4 @@
-module github.com/JunRun/run-micro/offer
+module offer
 
 go 1.14
 

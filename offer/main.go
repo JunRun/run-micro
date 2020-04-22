@@ -4,12 +4,12 @@ import (
 	"github.com/micro/go-micro"
 	"github.com/micro/go-micro/registry"
 	log "github.com/micro/go-micro/v2/logger"
+	_ "github.com/micro/go-plugins/registry/etcd"
 	"github.com/micro/go-plugins/registry/etcdv3"
-
-	"github.com/JunRun/run-micro/offer/handler"
-	"github.com/JunRun/run-micro/offer/model"
-	_ "github.com/JunRun/run-micro/offer/model"
-	offer "github.com/JunRun/run-micro/offer/proto/offer"
+	"offer/handler"
+	"offer/model"
+	_ "offer/model"
+	offer "offer/proto/offer"
 )
 
 func main() {
